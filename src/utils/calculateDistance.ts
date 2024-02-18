@@ -1,6 +1,6 @@
-import { Point } from "../models";
+import { TCoordinate } from "../models/TCoordinate";
 
-export function calculateDistance(p1: Point, p2: Point): number {
+export function calculateDistance(p1: TCoordinate, p2: TCoordinate): number {
   const [lat1, lon1] = p1;
   const [lat2, lon2] = p2;
 

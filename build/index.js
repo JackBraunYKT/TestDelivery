@@ -1,1 +1,17 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const generateMockCouriers_1 = require("./utils/test/generateMockCouriers");
+const generateMockOrders_1 = require("./utils/test/generateMockOrders");
+const OrderTree_1 = require("./OrderTree");
+const getInfo_1 = require("./utils/test/getInfo");
+const couriers = (0, generateMockCouriers_1.generateMockCouriers)();
+const orders = (0, generateMockOrders_1.generateMockOrders)();
+console.log("Orders:");
+orders.forEach((order) => console.log((0, getInfo_1.getInfo)(order)));
+console.log("---------------------------------------------");
+console.log("Couriers:");
+couriers.forEach((courier) => console.log((0, getInfo_1.getInfo)(courier)));
+console.log("---------------------------------------------");
+const orderTree = new OrderTree_1.OrderTree(orders);
+console.log(orderTree);
+orderTree.assignCouriersToOrders(couriers);
