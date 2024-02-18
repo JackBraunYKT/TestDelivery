@@ -1,10 +1,14 @@
 import { TCoordinate } from "../models/TCoordinate";
 
-export function calculateDistance(p1: TCoordinate, p2: TCoordinate): number {
+export function calculateHaversineDistance(
+  p1: TCoordinate,
+  p2: TCoordinate
+): number {
   const [lat1, lon1] = p1;
   const [lat2, lon2] = p2;
 
   const R = 6371; // радиус Земли в километрах
+  const toRadians = (angle: number): number => angle * (Math.PI / 180);
 
   const dLat = toRadians(lat2 - lat1);
   const dLon = toRadians(lon2 - lon1);
@@ -21,8 +25,4 @@ export function calculateDistance(p1: TCoordinate, p2: TCoordinate): number {
   const distance = R * c; // расстояние в километрах
 
   return distance;
-}
-
-function toRadians(degrees: number): number {
-  return degrees * (Math.PI / 180);
 }

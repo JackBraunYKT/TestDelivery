@@ -1,13 +1,13 @@
 import { ICourier } from "../../models/ICourier";
-import { getRandomPoint } from "./getRandomPoint";
+import { getRandomCoordinate } from "./getRandomCoordinate";
 
-export function generateMockCouriers(): ICourier[] {
+export function generateMockCouriers(length: number): ICourier[] {
   const mockCouriers: ICourier[] = [];
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= length; i++) {
     const courier: ICourier = {
       id: i,
-      currentLocation: getRandomPoint(),
+      currentLocation: getRandomCoordinate(),
       currentOrder: null,
     };
 

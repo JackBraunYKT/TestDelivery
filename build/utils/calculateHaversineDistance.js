@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculateDistance = void 0;
-function calculateDistance(p1, p2) {
+exports.calculateHaversineDistance = void 0;
+function calculateHaversineDistance(p1, p2) {
     const [lat1, lon1] = p1;
     const [lat2, lon2] = p2;
     const R = 6371; // радиус Земли в километрах
+    const toRadians = (angle) => angle * (Math.PI / 180);
     const dLat = toRadians(lat2 - lat1);
     const dLon = toRadians(lon2 - lon1);
     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -16,7 +17,4 @@ function calculateDistance(p1, p2) {
     const distance = R * c; // расстояние в километрах
     return distance;
 }
-exports.calculateDistance = calculateDistance;
-function toRadians(degrees) {
-    return degrees * (Math.PI / 180);
-}
+exports.calculateHaversineDistance = calculateHaversineDistance;

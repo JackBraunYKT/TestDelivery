@@ -1,10 +1,12 @@
+import { KDTree } from "./KDTree";
+import { calculateHaversineDistance } from "./utils/calculateHaversineDistance";
 import { generateMockCouriers } from "./utils/test/generateMockCouriers";
 import { generateMockOrders } from "./utils/test/generateMockOrders";
-import { OrderTree } from "./OrderTree";
+import { getDistanceInfo } from "./utils/test/getDistanceInfo";
 import { getInfo } from "./utils/test/getInfo";
 
-const couriers = generateMockCouriers();
-const orders = generateMockOrders();
+const couriers = generateMockCouriers(1);
+const orders = generateMockOrders(5);
 
 console.log("Orders:");
 orders.forEach((order) => console.log(getInfo(order)));
@@ -13,6 +15,15 @@ console.log("Couriers:");
 couriers.forEach((courier) => console.log(getInfo(courier)));
 console.log("---------------------------------------------");
 
-const orderTree = new OrderTree(orders);
-console.log(orderTree);
+if (couriers.length === 1) {
+  console.log("Distance between Orders and Courier:");
+  orders.forEach((order) => getDistanceInfo(order, couriers[0]));
+}
+
+const orderTree = new KDTree(orders, calculateHaversineDistance);
 orderTree.assignCouriersToOrders(couriers);
+couriers.forEach((courier) =>
+  console.log(
+    `The courier #${courier.id} took the order #${courier.currentOrder}`
+  )
+);
